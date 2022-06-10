@@ -19,39 +19,7 @@ public class Employee {
     public Employee() {
 
     }
-    public void setName()
-    {
-        Scanner scanner=new Scanner(System.in);
-        String str;
-        while(true) {
-            try {
-                System.out.println("Enter your name: ");
-                str = scanner.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter String value");
-                continue;
-            }
-        }
-        this.name=str;
-    }
-    private void setSurName()
-    {
-        Scanner scanner=new Scanner(System.in);
-        String str;
-        while(true) {
-            try {
-                System.out.println("Enter your surname: ");
-                str = scanner.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter String value");
-                continue;
-            }
-        }
-        this.surname = str;
-
-    }
+    
 
     public void checkJMBG(String jmbgtest1) throws NumberOfDigitsException
     {
