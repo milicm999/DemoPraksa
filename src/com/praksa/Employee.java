@@ -5,21 +5,23 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import java.util.*;
-
+import java.util.logging.Level;
 
 
 public class Employee {
     private String name;
     private String surname;
     private String jmbg;
-
     public File cv;
     final int VALID_NUM_OF_DIGIT=13;
+
+    Log logr=new Log();
+
 
     public Employee() {
 
     }
-    
+
 
     public void checkJMBG(String jmbgtest1) throws NumberOfDigitsException
     {
@@ -49,7 +51,7 @@ public class Employee {
             }
             catch (NotANumberException | NumberOfDigitsException e)
             {
-                System.out.println("A problem occured: " + e);
+                logr.logger.log(Level.INFO,"A problem occured: " + e);
                 continue;
             }
        }
@@ -70,7 +72,7 @@ public class Employee {
         }
         catch (FileNotFoundExeption e)
         {
-            System.out.println("A problem occured: " + e);
+            logr.logger.log(Level.INFO,"A problem occured: " + e);
         }
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-06-13T15:03:20</date>
+  <millis>1655125400540</millis>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>com.praksa.Employee</class>
+  <method>setJmbg</method>
+  <thread>1</thread>
+  <message>A problem occured: com.praksa.NumberOfDigitsException: JMBG need to be 13 digit number! 
+</message>
+</record>
+<record>
+  <date>2022-06-13T15:03:26</date>
+  <millis>1655125406839</millis>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>com.praksa.Employee</class>
+  <method>getCVfile</method>
+  <thread>1</thread>
+  <message>A problem occured: com.praksa.FileNotFoundExeption: Entered file does not exist!</message>
+</record>
+</log>
