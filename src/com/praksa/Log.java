@@ -14,7 +14,7 @@ public class Log {
         logger.setLevel(Level.ALL);
 
         ConsoleHandler ch=new ConsoleHandler();
-        ch.setLevel(Level.INFO);
+        ch.setLevel(Level.ALL);
         logger.addHandler(ch);
 
 

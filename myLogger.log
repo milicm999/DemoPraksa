@@ -2,26 +2,25 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-06-13T15:03:20</date>
-  <millis>1655125400540</millis>
-  <sequence>0</sequence>
+  <date>2022-06-14T09:54:20</date>
+  <millis>1655193260354</millis>
+  <sequence>6</sequence>
   <logger>global</logger>
   <level>INFO</level>
-  <class>com.praksa.Employee</class>
-  <method>setJmbg</method>
+  <class>com.test.JUnitTests</class>
+  <method>afterTest</method>
   <thread>1</thread>
-  <message>A problem occured: com.praksa.NumberOfDigitsException: JMBG need to be 13 digit number! 
-</message>
+  <message>Test 3 finished.</message>
 </record>
 <record>
-  <date>2022-06-13T15:03:26</date>
-  <millis>1655125406839</millis>
-  <sequence>1</sequence>
+  <date>2022-06-14T09:54:20</date>
+  <millis>1655193260357</millis>
+  <sequence>7</sequence>
   <logger>global</logger>
   <level>INFO</level>
-  <class>com.praksa.Employee</class>
-  <method>getCVfile</method>
+  <class>com.test.JUnitTests</class>
+  <method>shotdown</method>
   <thread>1</thread>
-  <message>A problem occured: com.praksa.FileNotFoundExeption: Entered file does not exist!</message>
+  <message>done</message>
 </record>
 </log>
