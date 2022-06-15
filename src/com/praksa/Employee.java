@@ -11,6 +11,8 @@ import java.util.logging.Level;
 public class Employee {
     private String name;
     private String surname;
+
+
     private String jmbg;
     public File cv;
     final int VALID_NUM_OF_DIGIT=13;
@@ -20,6 +22,9 @@ public class Employee {
 
     public Employee() {
 
+    }
+    public String getJmbg() {
+        return jmbg;
     }
 
 
@@ -36,28 +41,20 @@ public class Employee {
         else
             return;
     }
-
-    public void setJmbg()
-    {
-       while(true) {
+    public void setJmbg(String jmbg1)
+        {
             try
             {
-                System.out.println("Enter your JMBG: ");
-                Scanner scanner=new Scanner(System.in);
-                String jmbg=scanner.nextLine();
-                isANumber(jmbg);
-                checkJMBG(jmbg);
-                break;
+                isANumber(jmbg1);
+                checkJMBG(jmbg1);
             }
             catch (NotANumberException | NumberOfDigitsException e)
             {
                 logr.logger.log(Level.INFO,"A problem occured: " + e);
-                continue;
             }
-       }
-       this.jmbg=jmbg;
+            this.jmbg=jmbg1;
     }
-    public static void getFile(File file) throws FileNotFoundExeption
+    public void getFile(File file) throws FileNotFoundExeption
     {
         if(file==null)
             throw new FileNotFoundExeption("Entered file does not exist!");
@@ -65,14 +62,15 @@ public class Employee {
             return;
     }
 
-    public void getCVfile(Employee employee)
+    public File getCVfile()
     {
         try {
-            getFile(employee.cv);
+            getFile(this.cv);
         }
         catch (FileNotFoundExeption e)
         {
             logr.logger.log(Level.INFO,"A problem occured: " + e);
         }
+        return this.cv;
     }
 }

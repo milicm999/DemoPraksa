@@ -17,9 +17,10 @@ public class Main {
 
         System.out.println("Hello");
 
-        maja.setJmbg();
+        maja.setJmbg("123");
+        maja.setJmbg("");
 
-        maja.getCVfile(maja);
+        maja.getCVfile();
     }
 
 

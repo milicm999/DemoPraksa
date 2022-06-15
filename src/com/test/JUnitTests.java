@@ -5,11 +5,15 @@ import com.praksa.FileNotFoundExeption;
 import com.praksa.NotANumberException;
 import com.praksa.NumberOfDigitsException;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
-import java.util.List;
-import java.util.logging.Level;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 
 public class JUnitTests {
@@ -22,14 +26,11 @@ public class JUnitTests {
     public static void init()
     {
         logr.logger.info("Tests are starting");
-
-
     }
     @AfterAll
     public static void shotdown()
     {
         logr.logger.info("done");
-
     }
 
     @BeforeEach
@@ -44,10 +45,38 @@ public class JUnitTests {
         logr.logger.info("Test " + end++ +" finished.");
     }
 
+    public NumberOfDigitsException exception;
+    public NotANumberException exception1;
 
+    public FileNotFoundExeption exception2;
 
+    @Test
+    public void testCheckJMBG() throws NumberOfDigitsException
+    {
+        Employee employee1=mock(Employee.class);
+        exception=new NumberOfDigitsException("JMBG need to be 13 digit number! \n");
+        doThrow(exception).when(employee1).checkJMBG("123");
+        logr.logger.log(Level.ALL,exception.getMessage());
+    }
+    @Test
+    public void testIsANumber() throws NotANumberException
+    {
+        Employee employee1=mock(Employee.class);
+        exception1=new NotANumberException("JMBG cannot be null value! \n");
+        doThrow(exception1).when(employee1).isANumber("");
+        logr.logger.log(Level.ALL,exception1.getMessage());
+    }
+    @Test
+    public void testSetJmbg()
+    {
+        Employee employee=new Employee();
+        String actual="1234567891234";
+        employee.setJmbg(actual);
+        String expected= employee.getJmbg();
+        assertEquals(expected,actual);
+    }
 
-    @Test()
+    @Test
     public void testgetFile()
     {
         try
@@ -60,43 +89,32 @@ public class JUnitTests {
         catch(FileNotFoundExeption e)
         {
             assertEquals("Entered file does not exist!", e.getMessage());
-            //logr.logger.log(Level.INFO,"Testing getFile() method");
         }
-
-
     }
     @Test
-    public void testCheckJmbg()
+    public void testGetCvFile()
+    {
+        Employee employee=new Employee();
+        employee.cv=new File("C:/Users/milicm/maja faks/vestacka inteligencija/matlab-vezbe/Vezbe_1_RTSI.pdf");
+        File expected=employee.cv;
+        File actual=employee.getCVfile();
+        assertEquals(expected,actual);
+    }
+    @Test
+    public void testLog()
     {
         try
         {
-            Employee employee = new Employee();
-            employee.checkJMBG("123");
-
-            fail();
+            Log logr = new Log();
+            throw new IOException();
         }
-        catch (NumberOfDigitsException e)
+        catch (IOException e)
         {
-            assertEquals("JMBG need to be 13 digit number! \n", e.getMessage());
-            //logr.logger.log(Level.INFO,"Testing checkJmbg() method");
-
+            assertEquals(null,e.getMessage());
         }
     }
 
 
 
-    @Test
-    public void testIsANumber()
-    {
-        assertThrows(NotANumberException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                Employee employee= new Employee();
-                employee.isANumber("");
-                //logr.logger.log(Level.INFO,"Testing isAnNumber() method");
 
-            }
-
-        });
-    }
 }

@@ -28,9 +28,5 @@ public class Log {
         {
             logger.log(Level.SEVERE,"File logger not working",e);
         }
-
-
     }
-
-
 }
