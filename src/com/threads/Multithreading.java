@@ -1,22 +1,26 @@
 package com.threads;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Multithreading implements Runnable{
 
     private int index;
-
+    private static int threadIndex=0;
+    private static int countIndex=0;
+    private int numOfUsers;
     private String name;
     private String chat;
+    private ArrayList<String> names;
     private static boolean runningIn = true;
     public String getNameOf() {
         return name;
     }
 
-    public Multithreading(int index, String name)
+    public Multithreading(int numOfUsrers)
     {
-        this.index=index;
-        this.name=name;
+        this.numOfUsers=numOfUsrers;
+        names=new ArrayList<>(numOfUsrers);
     }
 
     public int getIndex()
@@ -35,6 +39,18 @@ public class Multithreading implements Runnable{
         }
     }
 
+    public void setName(String name)
+    {
+        names.add(countIndex,name);
+        countIndex++;
+    }
+
+    public int getThreadIndex()
+    {
+        return (threadIndex++)%3;
+
+    }
+
 
    public void message()
    {
@@ -47,7 +63,7 @@ public class Multithreading implements Runnable{
                if (chat == "f")
                    runningIn = false;
                else {
-                   System.out.println(name + " said: " + chat);
+                   System.out.println(names.get(getThreadIndex()) + " said: " + chat);
                    System.out.println("Finished.");
                    this.notifyAll();
                }
@@ -63,7 +79,6 @@ public class Multithreading implements Runnable{
     {
         Scanner scanner = new Scanner(System.in);
         message();
-        System.out.println(name+ " in message method");
         synchronized (this)
         {
             while(runningIn)
