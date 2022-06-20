@@ -12,8 +12,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+
+
 
 
 public class JUnitTests {

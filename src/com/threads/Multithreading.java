@@ -1,9 +1,8 @@
 package com.threads;
 
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Multithreading extends Thread{
+public class Multithreading implements Runnable{
 
     private int index;
 
