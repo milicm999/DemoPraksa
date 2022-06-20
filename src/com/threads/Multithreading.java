@@ -46,7 +46,7 @@ public class Multithreading implements Runnable{
 
     public int getThreadIndex()
     {
-        return (threadIndex++)%3;
+        return (threadIndex++)%numOfUsers;
 
     }
 
@@ -91,6 +91,6 @@ public class Multithreading implements Runnable{
             }
             System.out.println("Other thread finished");
         }
-        
+
     }
 }
