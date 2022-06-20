@@ -1,38 +1,53 @@
 package com.threads;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Multithreading implements Runnable{
 
     private int index;
-
+    private static int threadIndex=0;
+    private static int countIndex=0;
+    private int numOfUsers;
     private String name;
     private String chat;
+    private ArrayList<String> names;
+
+    private static Multithreading multiUser;
     private static boolean runningIn = true;
-    public String getNameOf() {
-        return name;
-    }
 
-    public Multithreading(int index, String name)
-    {
-        this.index=index;
-        this.name=name;
-    }
 
-    public int getIndex()
-    {
-        return this.index;
-    }
 
-    public boolean getRunning()
+    public static Multithreading getMultithreading(int num)
     {
-        if(runningIn==false)
-        {
-            return false;
+        if(multiUser==null){
+            multiUser=new Multithreading(num);
         }
-        else {
-            return true;
-        }
+        return multiUser;
+    }
+
+
+
+    private Multithreading(int numOfUsrers)
+    {
+        this.numOfUsers=numOfUsrers;
+        names=new ArrayList<>(numOfUsrers);
+    }
+
+
+
+
+
+    public void setName(String name)
+    {
+        names.add(countIndex,name);
+        countIndex++;
+    }
+
+    public int getThreadIndex()
+    {
+        return (threadIndex++)%3;
+
     }
 
 
@@ -47,7 +62,7 @@ public class Multithreading implements Runnable{
                if (chat == "f")
                    runningIn = false;
                else {
-                   System.out.println(name + " said: " + chat);
+                   System.out.println(names.get(getThreadIndex()) + " said: " + chat);
                    System.out.println("Finished.");
                    this.notifyAll();
                }
@@ -59,11 +74,10 @@ public class Multithreading implements Runnable{
 
 
     @Override
-    public synchronized void run()
+    public void run()
     {
         Scanner scanner = new Scanner(System.in);
         message();
-        System.out.println(name+ " in message method");
         synchronized (this)
         {
             while(runningIn)
@@ -77,8 +91,6 @@ public class Multithreading implements Runnable{
             }
             System.out.println("Other thread finished");
         }
-
-
-
+        
     }
 }

@@ -41,14 +41,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many users will be in chat?");
         int numOfUsers = scanner.nextInt();
+        Multithreading userSingleton = Multithreading.getMultithreading(numOfUsers);
         System.out.println("What are the names of users in this group?");
         for (int i = 0; i < numOfUsers; i++) {
             scanner.nextLine();
             System.out.println("Dodaj: ");
             String name = scanner.nextLine();
+            userSingleton.setName(name);
             System.out.println("dodajem " + name);
-            Runnable user = new Multithreading(i, name);
-            array.add(user);
+            Thread thread=new Thread(userSingleton);
+            array.add(thread);
             System.out.println(name + ": I am in.");
         }
         System.out.println("Chatroom \n");
