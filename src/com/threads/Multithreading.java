@@ -12,32 +12,31 @@ public class Multithreading implements Runnable{
     private String name;
     private String chat;
     private ArrayList<String> names;
+
+    private static Multithreading multiUser;
     private static boolean runningIn = true;
-    public String getNameOf() {
-        return name;
+
+
+
+    public static Multithreading getMultithreading(int num)
+    {
+        if(multiUser==null){
+            multiUser=new Multithreading(num);
+        }
+        return multiUser;
     }
 
-    public Multithreading(int numOfUsrers)
+
+
+    private Multithreading(int numOfUsrers)
     {
         this.numOfUsers=numOfUsrers;
         names=new ArrayList<>(numOfUsrers);
     }
 
-    public int getIndex()
-    {
-        return this.index;
-    }
 
-    public boolean getRunning()
-    {
-        if(runningIn==false)
-        {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
+
 
     public void setName(String name)
     {
@@ -75,7 +74,7 @@ public class Multithreading implements Runnable{
 
 
     @Override
-    public synchronized void run()
+    public void run()
     {
         Scanner scanner = new Scanner(System.in);
         message();
@@ -92,8 +91,6 @@ public class Multithreading implements Runnable{
             }
             System.out.println("Other thread finished");
         }
-
-
-
+        
     }
 }

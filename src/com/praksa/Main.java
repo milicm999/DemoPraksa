@@ -41,7 +41,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many users will be in chat?");
         int numOfUsers = scanner.nextInt();
-        Multithreading userSingleton = new Multithreading(numOfUsers);
+        Multithreading userSingleton = Multithreading.getMultithreading(numOfUsers);
         System.out.println("What are the names of users in this group?");
         for (int i = 0; i < numOfUsers; i++) {
             scanner.nextLine();
