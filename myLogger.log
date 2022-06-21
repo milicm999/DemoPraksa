@@ -2,23 +2,23 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-06-14T09:54:20</date>
-  <millis>1655193260354</millis>
-  <sequence>6</sequence>
+  <date>2022-06-21T13:43:14</date>
+  <millis>1655811794145</millis>
+  <sequence>23</sequence>
   <logger>global</logger>
   <level>INFO</level>
-  <class>com.test.JUnitTests</class>
+  <class>com.test.TestingEmployeeClass</class>
   <method>afterTest</method>
   <thread>1</thread>
-  <message>Test 3 finished.</message>
+  <message>Test 10 finished.</message>
 </record>
 <record>
-  <date>2022-06-14T09:54:20</date>
-  <millis>1655193260357</millis>
-  <sequence>7</sequence>
+  <date>2022-06-21T13:43:14</date>
+  <millis>1655811794145</millis>
+  <sequence>24</sequence>
   <logger>global</logger>
   <level>INFO</level>
-  <class>com.test.JUnitTests</class>
+  <class>com.test.TestingEmployeeClass</class>
   <method>shotdown</method>
   <thread>1</thread>
   <message>done</message>

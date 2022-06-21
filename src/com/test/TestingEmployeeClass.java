@@ -8,16 +8,13 @@ import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 
-
-
-public class JUnitTests {
+public class TestingEmployeeClass {
     static int start=1;
     static int end=1;
     final int VALID_NUM_OF_DIGIT=13;
@@ -52,20 +49,32 @@ public class JUnitTests {
     public FileNotFoundExeption exception2;
 
     @Test
-    public void testCheckJMBG() throws NumberOfDigitsException
+    public void testCheckJMBG()
     {
-        Employee employee1=mock(Employee.class);
-        exception=new NumberOfDigitsException("JMBG need to be 13 digit number! \n");
-        doThrow(exception).when(employee1).checkJMBG("123");
-        logr.logger.log(Level.ALL,exception.getMessage());
+        try
+        {
+            Employee employee1=new Employee();
+            employee1.checkJMBG("123");
+        }
+        catch (NumberOfDigitsException e)
+        {
+            assertEquals("JMBG need to be 13 digit number! \n",e.getMessage());
+            logr.logger.log(Level.INFO,"Test checkJMBG() method passed",e.getMessage());
+        }
     }
     @Test
-    public void testIsANumber() throws NotANumberException
+    public void testIsANumber()
     {
-        Employee employee1=mock(Employee.class);
-        exception1=new NotANumberException("JMBG cannot be null value! \n");
-        doThrow(exception1).when(employee1).isANumber("");
-        logr.logger.log(Level.ALL,exception1.getMessage());
+        try
+        {
+            Employee employee=new Employee();
+            employee.isANumber(null);
+        }
+        catch(NotANumberException e)
+        {
+            assertEquals("JMBG cannot be null value! \n",e.getMessage());
+            logr.logger.log(Level.INFO,"Test isANumber() method passed",e.getMessage());
+        }
     }
     @Test
     public void testSetJmbg()
@@ -78,12 +87,12 @@ public class JUnitTests {
     }
 
     @Test
-    public void testgetFile()
+    public void testCheckFile()
     {
         try
         {
             Employee employee = new Employee();
-            employee.getFile(null);
+            employee.checkFile(null);
 
             fail(); //if code does not throw any exceptions, it means that test failed.
         }
@@ -93,11 +102,11 @@ public class JUnitTests {
         }
     }
     @Test
-    public void testGetCvFile()
+    public void testSetCvFile()
     {
         Employee employee=new Employee();
-        employee.cv=new File("C:/Users/milicm/maja faks/vestacka inteligencija/matlab-vezbe/Vezbe_1_RTSI.pdf");
-        File expected=employee.cv;
+        employee.setCVfile("C:/Users/Public/Vezbe_1_RTSI.pdf");
+        File expected=new File("C:/Users/Public/Vezbe_1_RTSI.pdf");
         File actual=employee.getCVfile();
         assertEquals(expected,actual);
     }
@@ -113,6 +122,42 @@ public class JUnitTests {
         {
             assertEquals(null,e.getMessage());
         }
+    }
+    @Test
+    public void testGetCVfile()
+    {
+        try
+        {
+            Employee employee= new Employee();
+            employee.getCVfile();
+        }
+        catch (FileNotFoundExeption e)
+        {
+            assertEquals("Entered file does not exist!",e.getMessage());
+        }
+    }
+
+    @Test
+    public void TestNumberOfDigitsException()
+    {
+        String message="Test passed!";
+        NumberOfDigitsException n=new NumberOfDigitsException(message);
+        assertEquals("Test passed!",n.getMessage());
+    }
+
+    @Test
+    public void TestNotANumberException()
+    {
+        String message="Test passed!";
+        NotANumberException n=new NotANumberException(message);
+        assertEquals(message,n.getMessage());
+    }
+    @Test
+    public void TestFileNotFoundExeption()
+    {
+        String message="Test passed!";
+        FileNotFoundExeption f=new FileNotFoundExeption(message);
+        assertEquals(message,f.getMessage());
     }
 
 

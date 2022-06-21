@@ -24,5 +24,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="mockito-all-1.9.51" level="application" />
+    <orderEntry type="library" name="jmockit-1.49" level="application" />
   </component>
 </module>

@@ -1,10 +1,6 @@
 package com.praksa;
 
 import java.io.File;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import java.util.*;
 import java.util.logging.Level;
 
 
@@ -14,7 +10,7 @@ public class Employee {
 
 
     private String jmbg;
-    public File cv;
+    private File cv;
     final int VALID_NUM_OF_DIGIT=13;
 
     Log logr=new Log();
@@ -36,25 +32,25 @@ public class Employee {
             return;
     }
     public void isANumber(String jmbgtest) throws NotANumberException {
-        if(jmbgtest.isEmpty())
+        if(jmbgtest==null)
             throw new NotANumberException("JMBG cannot be null value! \n");
         else
             return;
     }
     public void setJmbg(String jmbg1)
+    {
+        try
         {
-            try
-            {
-                isANumber(jmbg1);
-                checkJMBG(jmbg1);
-            }
-            catch (NotANumberException | NumberOfDigitsException e)
-            {
-                logr.logger.log(Level.INFO,"A problem occured: " + e);
-            }
-            this.jmbg=jmbg1;
+            isANumber(jmbg1);
+            checkJMBG(jmbg1);
+        }
+        catch (NotANumberException | NumberOfDigitsException e)
+        {
+            logr.logger.log(Level.INFO,"A problem occured: " + e);
+        }
+        this.jmbg=jmbg1;
     }
-    public void getFile(File file) throws FileNotFoundExeption
+    public void checkFile(File file) throws FileNotFoundExeption
     {
         if(file==null)
             throw new FileNotFoundExeption("Entered file does not exist!");
@@ -65,12 +61,16 @@ public class Employee {
     public File getCVfile()
     {
         try {
-            getFile(this.cv);
+            checkFile(this.cv);
         }
         catch (FileNotFoundExeption e)
         {
             logr.logger.log(Level.INFO,"A problem occured: " + e);
         }
         return this.cv;
+    }
+    public void setCVfile(String pathname)
+    {
+        this.cv= new File(pathname);
     }
 }

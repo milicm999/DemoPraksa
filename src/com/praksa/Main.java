@@ -11,10 +11,10 @@ import com.threads.Multithreading;
 
 public class Main {
 
-    static final Logger logger= Logger.getLogger(Main.class.getName());
+   // static final Logger logger= Logger.getLogger(Main.class.getName());
     public static void main(String[] args) throws InterruptedException {
 
-
+/*For employee*/
 //        Employee maja=new Employee();
 //        System.out.println("Hello");
 //        maja.setJmbg("123");
@@ -23,34 +23,34 @@ public class Main {
 
 
 
-
-        ExecutorService executorService= Executors.newFixedThreadPool(3);
-
-        ArrayList<Runnable> array = new ArrayList<>();
-        boolean runningOut = true;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("How many users will be in chat?");
-        int numOfUsers = scanner.nextInt();
-        Multithreading userSingleton = Multithreading.getMultithreading(numOfUsers);
-        System.out.println("What are the names of users in this group?");
-        for (int i = 0; i < numOfUsers; i++) {
-            scanner.nextLine();
-            System.out.println("Dodaj: ");
-            String name = scanner.nextLine();
-            userSingleton.setName(name);
-            System.out.println("dodajem " + name);
-            Thread thread=new Thread(userSingleton);
-            array.add(thread);
-            System.out.println(name + ": I am in.");
-        }
-        System.out.println("Chatroom \n");
-
-
-        for (int i = 0; i < numOfUsers; i++) {
-            executorService.execute(array.get(i));
-        }
-
+/*For threads*/
+//        ExecutorService executorService= Executors.newFixedThreadPool(3);
+//
+//        ArrayList<Runnable> array = new ArrayList<>();
+//        boolean runningOut = true;
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("How many users will be in chat?");
+//        int numOfUsers = scanner.nextInt();
+//        Multithreading userSingleton = Multithreading.getMultithreading(numOfUsers);
+//        System.out.println("What are the names of users in this group?");
+//        for (int i = 0; i < numOfUsers; i++) {
+//            scanner.nextLine();
+//            System.out.println("Dodaj: ");
+//            String name = scanner.nextLine();
+//            userSingleton.setName(name);
+//            System.out.println("dodajem " + name);
+//            Thread thread=new Thread(userSingleton);
+//            array.add(thread);
+//            System.out.println(name + ": I am in.");
+//        }
+//        System.out.println("Chatroom \n");
+//
+//
+//        for (int i = 0; i < numOfUsers; i++) {
+//            executorService.execute(array.get(i));
+//        }
 
     }
 
 }
+
